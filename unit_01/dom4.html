@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="UTF-8">
+  <title>changing the document title</title>
+  <script>
+    function changeTitle(){
+         var title = document.getElementById("text").value;
+         document.title = title;
+        }
+
+        window.onload = function(){
+         document.getElementById("button").addEventListener('click',changeTitle);
+        }
+
+  </script>
+ </head>
+ <body>
+  <p>To change title: enter text then click button</p>
+  <p><input type="text" id="text"></p>
+  <p><input type="button" id="button" value="set title"></p>
+ </body>
+</html>

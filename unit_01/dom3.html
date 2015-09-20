@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="UTF-8">
+  <title>JavaScript Events and the Event Object</title>
+  
+  <script>
+    window.onload = function(){
+    var hour = (new Date()).getHours();
+    var timeOfDay="";
+    if(hour >= 6 && hour < 12){
+        timeOfDay = "morning";
+                (document.getElementsByTagName("img")[0]).src = "../images/morning.png";
+    }
+    else if(hour >= 12 && hour < 18){
+        timeOfDay = "afternoon";
+                (document.getElementsByTagName("img")[0]).src = "../images/afternoon.png";
+    }
+    else{
+        timeOfDay = "night";
+                (document.getElementsByTagName("img")[0]).src = "../images/evening.png";
+    }
+        var p = document.createElement("p");
+        p.appendChild(document.createTextNode("Good "+timeOfDay));
+        (document.getElementsByTagName("body")[0]).appendChild(p);
+    }
+
+  </script>
+ </head>
+ <body>
+  <p><img width="201" height="142"></p>
+ </body>
+</html>

@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="UTF-8">
+  <title>page level JavaScript</title>
+  <script type="text/javascript">
+   function loadCities(){
+    var cities = ["New York, US","Paris, FR","Rome, IT","London, EN","Auckland, NZ","Brisbane, AUS","Wellington, NZ"];
+    var ulElement = document.getElementById("cityList");
+    for(var city in cities){
+     var listItem = ulElement.appendChild(document.createElement("li"));
+     listItem.appendChild(document.createTextNode(cities[city]));
+    }
+   }
+  </script>
+ </head>
+ <body onload="loadCities()">
+  <ul id="cityList"></ul>
+ </body>
+</html>

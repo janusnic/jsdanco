@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="UTF-8">
+  <title>Passing Arguments to HTML Attached Event Handlers</title>
+  <script>
+
+    function appendTitle(title){
+        document.title += title;
+    }
+
+  </script>
+ </head>
+ <body onload="appendTitle('... addendum')">
+ </body>
+</html>

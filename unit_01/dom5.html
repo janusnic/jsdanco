@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+ <head>
+  <meta charset="UTF-8">
+  <title>JavaScript Events and the Event Object</title>
+  <style type="text/css">
+    div{
+      border-radius: 5px;
+      margin: 3px;
+      padding: 5px;
+      background-color: #AAAAAA;
+      font-weight: bold;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+  
+  <script>
+    function clickHandler(e,objId,num,msg){
+    var obj = document.getElementById(objId);
+    obj.innerHTML = "DIV " + num + " says " + msg + "(" + e.screenX + "," + e.screenY + ")";
+    }
+
+    function yesWrapper(e){
+        clickHandler(e,"heading",1,"yes");
+        //e.target.removeEventListener('click',yesWrapper); // only to demonstrate
+    }
+
+    function noWrapper(e){
+        clickHandler(e,"heading",2,"no");
+        //e.target.removeEventListener('click',noWrapper); // only to demonstrate
+    }
+
+    function onLoadHandler(){
+        document.getElementById("div1").addEventListener('click',yesWrapper,false);
+        document.getElementById("div2").addEventListener('click',noWrapper,false);
+    }
+
+
+    window.onload = onLoadHandler;
+
+  </script>
+ </head>
+ <body>
+  <div id="div1">Say Yes</div>
+  <div id="div2">Say No</div>
+  <h1 id="heading"></h1>
+ </body>
+</html>
