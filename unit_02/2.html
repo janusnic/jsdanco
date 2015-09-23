@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    function CoffeeMachine(power) {
+
+      this.waterAmount = 0;
+      console.log( 'Создана кофеварка мощностью: ' + power + ' ватт' );
+
+      // расчёт времени для кипячения
+      function getBoilTime() {
+        return 1000; // точная формула расчета будет позже
+      }
+
+      // что делать по окончании процесса
+      function onReady() {
+        console.log( 'Кофе готово!' );
+      }
+
+      this.run = function() {
+        // setTimeout - встроенная функция,
+        // она запустит onReady через getBoilTime() миллисекунд
+        setTimeout(onReady, getBoilTime());
+      };
+    }
+
+// создать кофеварку
+var coffeeMachine = new CoffeeMachine(100);
+
+// залить воды
+coffeeMachine.waterAmount = 200;
+
+coffeeMachine.run();
+
+</script>
