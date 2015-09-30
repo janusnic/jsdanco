@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<ul>
+  <li>Hi</li>
+  <li>there</li>
+</ul>
+
+<script>
+
+var cloneUL = document.querySelector('ul').cloneNode(true);
+
+console.log(cloneUL.constructor); //logs HTMLUListElement()
+console.log(cloneUL.innerHTML); //logs <li>Hi</li><li>there</li>
+
+</script>
+</body>
+</html>

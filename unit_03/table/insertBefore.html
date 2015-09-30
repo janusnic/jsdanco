@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<ul>
+    <li>2</li>
+    <li>3</li>
+</ul>
+
+<script>
+
+//create a text node and li element node and append the text to the li
+var text1 = document.createTextNode('1');
+var li = document.createElement('li');
+li.appendChild(text1);
+
+//select the ul in the document
+var ul = document.querySelector('ul');
+
+/* 
+add the li element we created above to the DOM, notice I call on <ul> and pass reference to <li>2</li> using ul.firstChild 
+*/
+ul.insertBefore(li,ul.firstChild);
+
+console.log(document.body.innerHTML);
+/*logs
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+</ul>
+*/
+
+</script>
+</body>
+</html>

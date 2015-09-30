@@ -1,0 +1,115 @@
+<script>
+var USER_FILE = "[\n  " + [
+  '{"name": "Carolus Haverbeke", "sex": "m", "born": 1980, "fee": 1975, "dep": "C1", "position": "dev"}',
+  '{"name": "Emma de Milliano", "sex": "f", "born": 1980, "fee": 1956, "dep": "P1", "position": "seo"}',
+  '{"name": "Maria de Rycke", "sex": "f", "born": 1983, "fee": 1924, "dep": "F1", "position": "seo"}',
+  '{"name": "Jan van Brussel", "sex": "m", "born": 1964, "fee": 1948, "dep": "J1", "position": "boss"}',
+  '{"name": "Philibert Haverbeke", "sex": "m", "born": 1977, "fee": 1997, "dep": "E1", "position": "dev"}',
+  '{"name": "Jan Frans van Brussel", "sex": "m", "born": 1961, "fee": 1980, "dep": "J1", "position":null}',
+  '{"name": "Pauwels van Haverbeke", "sex": "m", "born": 1935, "fee": 1982, "dep": "N1", "position":null}',
+  '{"name": "Clara Aernoudts", "sex": "f", "born": 1980, "fee": 2012, "dep": "H1", "position": "seo"}',
+  '{"name": "Emile Haverbeke", "sex": "m", "born": 1980, "fee": 1968, "dep": "C1", "position": "dev"}',
+  '{"name": "Lieven de Causmaecker", "sex": "m", "born": 1996, "fee": 1924, "dep": "C1", "position": "staf"}',
+  '{"name": "Pieter Haverbeke", "sex": "m", "born": 1972, "fee": 1942, "dep": "L1", "position":null}',
+  '{"name": "Livina Haverbeke", "sex": "f", "born": 1992, "fee": 1943, "dep": "D1", "position": "dev"}',
+  '{"name": "Pieter Bernard Haverbeke", "sex": "m", "born": 1995, "fee": 1962, "dep": "W1", "position": "Petronella Wauters"}',
+  '{"name": "Lieven van Haverbeke", "sex": "m", "born": 1970, "fee": 1936, "dep": "P1", "position": "seo"}',
+  '{"name": "Joanna de Causmaecker", "sex": "f", "born": 1962, "fee": 1987, "dep": "B1", "position":null}',
+  '{"name": "Willem Haverbeke", "sex": "m", "born": 1968, "fee": 1931, "dep": "L1", "position": "staf"}',
+  '{"name": "Pieter Antone Haverbeke", "sex": "m", "born": 1953, "fee": 1998, "dep": "J1", "position": "staf"}',
+  '{"name": "Maria van Brussel", "sex": "f", "born": 1981, "fee": 2034, "dep": "J1", "position": "security"}',
+  '{"name": "Angela Haverbeke", "sex": "f", "born": 1978, "fee": 1934, "dep": "P1", "position": "staf"}',
+  '{"name": "Elisabeth Haverbeke", "sex": "f", "born": 1911, "fee": 1954, "dep": "J1", "position": "seo"}',
+  '{"name": "Lievijne Jans", "sex": "f", "born": 1942, "fee": 1982, "dep":null, "position":null}',
+  '{"name": "Bernardus de Causmaecker", "sex": "m", "born": 1971, "fee": 1989, "dep": "L1", "position": "seo"}',
+  '{"name": "Jacoba Lammens", "sex": "f", "born": 1999, "fee": 1940, "dep": "L1", "position": "dev"}',
+  '{"name": "Pieter de Decker", "sex": "m", "born": 1975, "fee": 1980, "dep": "J1", "position": "dev"}',
+  '{"name": "Joanna de Pape", "sex": "f", "born": 1954, "fee": 1923, "dep": "V1", "position": "boss"}',
+  '{"name": "Daniel Haverbeke", "sex": "m", "born": 1952, "fee": 1923, "dep": "L1", "position": "boss"}',
+  '{"name": "Lieven Haverbeke", "sex": "m", "born": 1961, "fee": 1976, "dep": "P1", "position": "boss"}',
+  '{"name": "Martina de Pape", "sex": "f", "born": 1966, "fee": 1927, "dep": "V1", "position": "manager"}',
+  '{"name": "Jan Francies Haverbeke", "sex": "m", "born": 1975, "fee": 1979, "dep": "P1", "position": "manager"}',
+  '{"name": "Maria Haverbeke", "sex": "m", "born": 1975, "fee": 1997, "dep": "E1", "position": "dev"}',
+  '{"name": "Petronella de Decker", "sex": "f", "born": 1981, "fee": 1981, "dep": "P1", "position": "manager"}',
+  '{"name": "Livina Sierens", "sex": "f", "born": 1961, "fee": 2026, "dep": "J1", "position": "staf"}',
+  '{"name": "Laurentia Haverbeke", "sex": "f", "born": 1990, "fee": 1986, "dep": "J1", "position": "staf"}',
+  '{"name": "Carel Haverbeke", "sex": "m", "born": 1996, "fee": 2037, "dep": "P1", "position": "staf"}',
+  '{"name": "Elisabeth Hercke", "sex": "f", "born": 1982, "fee": 1974, "dep": "W1", "position": "staf"}',
+  '{"name": "Jan Haverbeke", "sex": "m", "born": 1971, "fee": 1931, "dep": "L1", "position": "staf"}',
+  '{"name": "Anna van Hecke", "sex": "f", "born": 1977, "fee": 1970, "dep": "P1", "position": "manager"}',
+  '{"name": "Maria Sturm", "sex": "f", "born": 1985, "fee": 1919, "dep": "C1", "position": "dev"}',
+  '{"name": "Jacobus Bernardus van Brussel", "sex": "m", "born": 1986, "fee": 1989, "dep": "J1", "position": "staf"}'
+].join(",\n  ") + "\n]";
+
+// This makes sure the data is exported in node.js —
+// `require(./path/to/persone.js)` will get you the array.
+if (typeof module != "undefined" && module.exports)
+  module.exports = USER_FILE;
+
+var persone  =  JSON.parse(USER_FILE);
+console.log(persone.length);
+
+function  filter(array,   test)   {
+        var passed  =   [];
+        for (var    i   =   0;  i   <   array.length;   i++)    {
+                if  (test(array[i]))
+                        passed.push(array[i]);
+        }
+        return  passed;
+}
+console.log(filter(persone,  function(person)    {
+        return  person.born > 1970 && person.born < 1995;
+        }));
+
+
+console.log(persone.filter(function(person)  {   
+    return  person.dep == "J1"; }));
+
+
+function map(array, transform) {
+  var mapped = [];
+  for (var i = 0; i < array.length; i++)
+    mapped.push(transform(array[i]));
+  return mapped;
+}
+
+var overFee = persone.filter(function(person) {
+  return person.fee >1990 && person.dep == 'J1';
+});
+console.log(map(overFee, function(person) {
+  return person.name;
+}));
+
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+function age(p) { return 2015 - p.born; }
+function male(p) { return p.sex == "m"; }
+function female(p) { return p.sex == "f"; }
+
+console.log(average(persone.filter(male).map(age)));
+
+console.log(average(persone.filter(female).map(age)));
+
+
+var theSet = ["Carel Haverbeke", "Maria van Brussel",
+              "Donald Duck"];
+function isInSet(set, person) {
+  return set.indexOf(person.name) > -1;
+}
+
+console.log(persone.filter(function(person) {
+  return isInSet(theSet, person);
+}));
+
+console.log(persone.filter(isInSet.bind(null, theSet)));
+
+
+var byName = {"name": "Daniel Haverbeke"};
+
+console.log(persone.forEach(function(person) {
+  byName[person.name] = person;
+}));
+
+</script>
