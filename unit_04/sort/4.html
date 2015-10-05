@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Traversing an HTML Table with JavaScript and DOM Interfaces</title>
+      
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+
+
+</head>
+<body>
+
+
+<script>
+    var tbody;
+    var asc = [];
+    function sortTable(tbody, col, asc) {
+      console.log(tbody,col,asc);
+
+            var rows = tbody.rows,
+                rlen = rows.length,
+                arr = new Array(),
+                i, j, cells, clen;
+            // fill the array with values from the table
+            for (i = 0; i < rlen; i++) {
+                cells = rows[i].cells;
+                clen = cells.length;
+                arr[i] = new Array();
+                for (j = 0; j < clen; j++) {
+                    arr[i][j] = cells[j].innerHTML;
+                }
+            }
+            // sort the array by the specified column number (col) and order (asc)
+            arr.sort(function (a, b) {
+                return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
+            });
+            // replace existing rows with new rows created from the sorted array
+            for (i = 0; i < rlen; i++) {
+                rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
+            }
+        }
+
+    // get the reference for the body
+        var mybody = document.getElementsByTagName("body")[0];
+
+        // creates <table> and <tbody> elements
+        mytable     = document.createElement("table");
+        mytablebody = document.createElement("tbody");
+        mytablehead = document.createElement("thead");
+        mytablefoot = document.createElement("tfoot");
+    window.onload = function () {
+            start();
+            tbody = document.getElementById('myTBody');
+            console.log(tbody);
+         
+        }    
+    
+    
+    function start() {
+      
+        
+
+        // creating all cells
+        // creates a <tr> element
+        mycurrent_row = document.createElement("tr");
+        
+        for(var i = 0; i < 2; i++) {
+                // creates a <th> element
+                mycurrent_cell = document.createElement("th");
+                
+                var s = '<b>Header'+i+'</b>'; // HTML string
+                var a = document.createElement('a');
+                a.innerHTML = s;
+                a.setAttribute("href","#");
+                asc[i] = 1;
+                var sa = "return sortTable("+tbody+','+ i+','+ asc[i]+"); for (var j=0; j<2; j++){asc[j] = 1;} asc[i] *=-1;";
+                a.setAttribute("onclick",sa);
+                mycurrent_cell.appendChild(a);
+               
+                mycurrent_row.appendChild(mycurrent_cell);
+            }
+            // appends the row <tr> into <tbody>
+            mytablehead.appendChild(mycurrent_row);
+            mytablehead.setAttribute("border","2");
+            mytablehead.setAttribute("id","myTHead");
+
+            mycurrent_row = document.createElement("tr");
+
+            for(var i = 0; i < 2; i++) {
+                // creates a <th> element
+                mycurrent_cell = document.createElement("td");
+                // creates a Text Node
+                currenttext = document.createTextNode("Footer " + i);
+                // appends the Text Node we created into the cell <td>
+                mycurrent_cell.appendChild(currenttext);
+                // appends the cell <td> into the row <tr>
+                mycurrent_row.appendChild(mycurrent_cell);
+            }
+            // appends the row <tr> into <tbody>
+            mytablefoot.appendChild(mycurrent_row);
+            mytablefoot.setAttribute("border","2");
+            mytablefoot.setAttribute("id","myTFoot");
+
+
+        // creating all cells
+        for(var j = 0; j < 2; j++) {
+            // creates a <tr> element
+            mycurrent_row = document.createElement("tr");
+
+            for(var i = 0; i < 2; i++) {
+                // creates a <td> element
+                mycurrent_cell = document.createElement("td");
+                // creates a Text Node
+                currenttext = document.createTextNode("cell is row " + j + ", column " + i);
+                // appends the Text Node we created into the cell <td>
+                mycurrent_cell.appendChild(currenttext);
+                // appends the cell <td> into the row <tr>
+                mycurrent_row.appendChild(mycurrent_cell);
+            }
+            // appends the row <tr> into <tbody>
+            mytablebody.appendChild(mycurrent_row);
+        }
+        mytablebody.setAttribute("id","myTBody");
+
+        // appends <tbody> into <table>
+        mytable.appendChild(mytablehead);
+        mytable.appendChild(mytablebody);
+        mytable.appendChild(mytablefoot);
+
+        // appends <table> into <body>
+        mybody.appendChild(mytable);
+        // sets the border attribute of mytable to 2;
+        mytable.setAttribute("border","2");
+        mytable.setAttribute("id","myTable");
+
+       //tbody = document.getElementById('myTBody');
+        //console.log(tbody.rows.length);
+
+
+        var tableEl = document.getElementById("myTable");
+        var theadEl = document.getElementById("myTHead");
+        var tfootEl = document.getElementById("myTFoot");
+        //var tbody = document.getElementById("myTBody");
+       }
+</script>
+</body>
+</html>

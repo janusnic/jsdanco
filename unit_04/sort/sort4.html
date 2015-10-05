@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title> - jsFiddle demo</title>
+  
+    
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+       
+  <style type='text/css'>
+    table {width: 100%;font: 12px arial;}
+th, td {min-width: 40px;text-align: center;}
+th {font-weight: bold;}
+  </style>
+  
+
+
+
+<script type='text/javascript'>//<![CDATA[
+
+function sortTable(table, col, reverse) {
+    var tb = table.tBodies[0], // use `<tbody>` to ignore `<thead>` and `<tfoot>` rows
+        tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
+        i;
+    reverse = -((+reverse) || -1);
+    tr = tr.sort(function (a, b) { // sort rows
+        return reverse // `-1 *` if want opposite order
+            * (a.cells[col].textContent.trim() // using `.textContent.trim()` for test
+                .localeCompare(b.cells[col].textContent.trim())
+               );
+    });
+    for(i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
+}
+
+function makeSortable(table) {
+    var th = table.tHead, i;
+    th && (th = th.rows[0]) && (th = th.cells);
+    if (th) i = th.length;
+    else return; // if no `<thead>` then do nothing
+    while (--i >= 0) (function (i) {
+        var dir = 1;
+        th[i].addEventListener('click', function () {sortTable(table, i, (dir = 1 - dir))});
+    }(i));
+}
+
+function makeAllSortable(parent) {
+    parent = parent || document.body;
+    var t = parent.getElementsByTagName('table'), i = t.length;
+    while (--i >= 0) makeSortable(t[i]);
+}
+
+window.onload = function () {makeAllSortable();};
+//]]> 
+
+</script>
+
+</head>
+<body>
+  <table>
+  <thead>
+    <tr>
+      <th>c1</th>
+      <th>c2</th>
+      <th>c3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a</td><td>t</td><td>p</td>
+    </tr>
+    <tr>
+      <td>a</td><td>v</td><td>r</td>
+    </tr>
+    <tr>
+      <td>f</td><td>a</td><td>d</td>
+    </tr>
+    <tr>
+      <td>h</td><td>t</td><td>i</td>
+    </tr>
+  </tbody>
+</table>
+  
+</body>
+
+</html>
+
