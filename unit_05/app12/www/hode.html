@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script Language="JavaScript">
+function XmlHttp()
+{
+var xmlhttp;
+try{xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");}
+catch(e)
+{
+ try {xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");} 
+ catch (E) {xmlhttp = false;}
+}
+if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+{
+ xmlhttp = new XMLHttpRequest();
+}
+  return xmlhttp;
+}
+ 
+function ajax(param)
+{
+ if (window.XMLHttpRequest) req = new XmlHttp();
+   method=(!param.method ? "POST" : param.method.toUpperCase());
+
+  if(method=="GET")
+    {
+      send=null;
+      param.url=param.url+"&ajax=true";
+    }
+      else
+          {
+            send="";
+            for (var i in param.data) send+= i+"="+param.data[i]+"&";
+          // send=send+"ajax=true"; // если хотите передать сообщение об успехе
+           }
+ 
+                req.open(method, param.url, true);
+                if(param.statbox)document.getElementById(param.statbox).innerHTML = '<img src="www/wait.gif">';
+                req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.send(send);
+                req.onreadystatechange = function()
+                {
+                  if (req.readyState == 4 && req.status == 200) //если ответ положительный
+                     {
+                       if(param.success)param.success(req.responseText);
+                     }
+                }
+}
+</script>
+
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="hode.html">Comments</a></li>
+                <li><a href=getpost.html class="article">Get/Post</a></li>
+                <li><a href=ajax.html class="article">Ajax</a></li>
+                <li><a href=table.html class="article">Table</a></li>
+            </ul>
+        </div>
+        <div id="content">
+        <div id="status" style="width:470px;background:#fff;padding:20px 10px 20px 10px;border:solid 5px #D1D1D1;font: 13 Arial;">
+            Ни одного комментария пока нет.
+        </div>
+<br>
+      <form action="/">
+      <p><b>Оставьте ваш комментарий</b></p>
+      <p><textarea id="area_1" name="area_1" style="height:50px; width:500px;padding:10px;font: 13 Arial;">Введите имя</textarea></p>
+      <p><textarea id="area_2" name="area_1" style="height:100px; width:500px;padding:10px;font: 13 Arial;">Текст сообщения</textarea></p>
+      <input type='button' value='Сохранить комментарий' onclick='
+            ajax({
+                  url:"/",
+                  statbox:"status",
+                  method:"POST",
+                  data:
+                 {                                                            first_area:document.getElementById("area_1").value,
+                  second_area:document.getElementById("area_2").value
+                 },
+                 success:function(data){document.getElementById("status").innerHTML=data;}
+
+                 })'
+                >
+                </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="hode.html">ABOUT</a></li>
+                <li><a href=getpost.html class="article">Get/Post</a></li>
+                <li><a href=ajax.html class="article">Ajax</a></li>
+                <li><a href=table.html class="article">Table</a></li>
+            </ul>
+        </div>
+
+<script>
+
+function startAjax(url){
+  var request; 
+  if(window.XMLHttpRequest){ 
+      request = new XMLHttpRequest(); 
+  } else if(window.ActiveXObject){ 
+      request = new ActiveXObject("Microsoft.XMLHTTP");  
+  } else { 
+      return; 
+  } 
+  
+  request.onreadystatechange = function(){
+    switch (request.readyState) {
+      case 1: print_console("<br/><em>1: вызван open...</em>"); break
+      case 2: print_console("<br/><em>2: получены заголовки...</em>"); break
+      case 3: print_console("<br/><em>3: загружается тело..</em>"); break
+      case 4:{
+       if(request.status==200){   
+            print_console("<br/><em>4: запрос завершён</em>"); 
+            document.getElementById("printResult").innerHTML = "<b>"+request.responseText+"</b>"; 
+           }else if(request.status==404){
+            alert("HTTP Status: 404 : NOT FOUND!");
+           }
+            else alert("текущее состояние запроса: "+ request.status);
+       
+      break
+      }
+    }   
+    } 
+  //request.open("GET",url+"?a1=1&a2=2",true);
+  request.open("POST",url,true);
+  request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  request.send("param1=1&param2=2");
+  } 
+  function print_console(text){
+    document.getElementById("console").innerHTML += text; 
+  }
+</script>
+
+
+<div id="content">
+<a href="#" onclick="startAjax('/');">Post Ajax</a>  
+
+<div id="console" style="border: 1px solid gray; width:250px; height: 110px; padding: 10px; background:lightgray;">
+Cosole log panel
+</div>
+
+<br/>
+<div id="printResult">
+print result
+</div>
+</div>
+
+</body>
+</html>

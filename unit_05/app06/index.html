@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+   <script>
+    function makeRequest(url) {
+        var httpRequest = false;
+
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+            httpRequest = new XMLHttpRequest();
+            if (httpRequest.overrideMimeType) {
+                httpRequest.overrideMimeType('text/xml');
+                
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        if (!httpRequest) {
+            alert('Не вышло :( Невозможно создать экземпляр класса XMLHTTP ');
+            return false;
+        }
+        httpRequest.onreadystatechange = function() { alertContents(httpRequest); };
+        httpRequest.open('GET', url, true);
+        httpRequest.send(null);
+
+    }
+
+    function alertContents(httpRequest) {
+
+        if (httpRequest.readyState == 4) {
+            if (httpRequest.status == 200) {
+                var xmldoc = httpRequest.responseXML;
+                var root_node = xmldoc.getElementsByTagName('root').item(0);
+                alert(root_node.firstChild.data);
+            } else {
+                alert('С запросом возникла проблема.');
+            }
+        }
+
+    }
+  </script>
+<span
+    style="cursor: pointer; text-decoration: underline"
+    onclick="makeRequest('test.xml')">
+        Сделать запрос
+</span>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <button  id="button" onclick="loadTest()">Загрузить test.txt!</button>
+
+  <script>
+    function loadTest() {
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'test.txt', true);
+      xhr.send(); // (1)
+
+      xhr.onreadystatechange = function() { // (3)
+          if (xhr.readyState != 4) return;
+
+          button.innerHTML = 'Готово!';
+
+          if (xhr.status != 200) {
+            // обработать ошибку
+            alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+          } else {
+            // вывести результат
+            alert(xhr.responseText);
+          }
+
+        }
+      button.innerHTML = 'Загружаю...';
+      button.disabled = true;
+
+    }
+  </script>
+
+</body>
+
+</html>
+
