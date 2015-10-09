@@ -1,0 +1,188 @@
+body {margin: 0; font: normal 14px/130% arial,verdana;}
+a, a:hover {color: #FFF; text-decoration: none;}
+
+#wrapper {position: relative; overflow: hidden;}
+#inner-wrapper {width: 960px; margin: 0 auto;}
+#header {min-height: 150px; background: #069; color: #FFF;}
+#header .title {padding: 50px 0 0 30px; margin: 0 0 4px; font-size: 32px; line-height: 36px;}
+#header .sub-title {padding: 0 0 0 30px; margin: 0 0 25px; font-weight: normal; font-size: 16px; line-height: 18px;}
+#content {min-height: 400px; overflow: hidden; padding: 35px; color: #000; border:1px solid #f0f0f0; border-width: 0 1px}
+#footer {background: #f0f0f0; height: 25px; color: #777; padding: 10px;}
+
+#menu {
+	background: #000;
+}
+#menu {margin: 0; padding: 0; list-style-type: none;}
+#menu:after {content: " "; display: block; line-height: 0; height: 0; width: 100%; clear: both;}
+#menu >li {float: left;}
+#menu >li + li {margin-left: 5px;}
+#menu >li > a {
+	display: block; padding: 6px 12px; color: #FFF;
+	-webkit-transition: all .3s;
+	   -moz-transition: all .3s;
+	    -ms-transition: all .3s;
+	     -o-transition: all .3s;
+	        transition: all .3s;
+}
+
+#menu >li > a:hover {background: #E76600;}
+
+@media only screen and (max-width:960px){
+	#inner-wrapper {width: 80%;}
+}
+.block-title {padding: 0 10px;}
+.gallery {overflow: hidden; clear: both; margin: 0 -10px;}
+.gallery .picture {
+	float: left;
+	padding: 0 10px 20px;
+	width: 25%;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.gallery .picture img {
+	max-width: 100%;
+}
+
+
+@media only screen and (max-width:960px){
+	#inner-wrapper {width: 80%;}
+	#gallery .picture {width: 50%;}
+}
+
+
+body {
+	color: #000;
+	background: #fff;
+}
+
+.nav {
+	width: 401px;
+	height: 48px;
+	background: url(blue-nav.gif) no-repeat;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+}
+.nav li {
+	display: inline;
+}
+.nav li a:link, .nav li a:visited {
+	position: absolute;
+	top: 0;
+	height: 48px;
+	text-indent: -9000px;
+	overflow: hidden;
+	z-index: 10;
+}
+	.nav .home a:link, .nav .home a:visited {
+		left: 23px;
+		width: 76px;
+	}
+	.nav .home a:hover, .nav .home a:focus {
+		background: url(blue-nav.gif) no-repeat -23px -49px;
+	}
+	.nav .home a:active {
+		background: url(blue-nav.gif) no-repeat -23px -98px;
+	}
+	.current-home .home a:link, .current-home .home a:visited {
+		background: url(blue-nav.gif) no-repeat -23px -147px;
+		cursor: default;
+	}
+	.nav-home, .nav-home-click {
+		position: absolute;
+		top: 0;
+		left: 23px;
+		width: 76px;
+		height: 48px;
+		background: url(blue-nav.gif) no-repeat -23px -49px;
+	}
+	.nav-home-click {
+		background: url(blue-nav.gif) no-repeat -23px -98px;
+	}
+
+
+
+	.nav .about a:link, .nav .about a:visited {
+		left: 100px;
+		width: 82px;
+	}
+	.nav .about a:hover, .nav .about a:focus {
+		background: url(blue-nav.gif) no-repeat -100px -49px;
+	}
+	.nav .about a:active {
+		background: url(blue-nav.gif) no-repeat -100px -98px;
+	}
+	.current-about .about a:link, .current-about .about a:visited {
+		background: url(blue-nav.gif) no-repeat -100px -147px;
+		cursor: default;
+	}
+	.nav-about, .nav-about-click {
+		position: absolute;
+		top: 0;
+		left: 100px;
+		width: 82px;
+		height: 48px;
+		background: url(blue-nav.gif) no-repeat -100px -49px;
+	}
+	.nav-about-click {
+		background: url(blue-nav.gif) no-repeat -100px -98px;
+	}
+
+
+
+	.nav .services a:link, .nav .services a:visited {
+		left: 183px;
+		width: 97px;
+	}
+	.nav .services a:hover, .nav .services a:focus {
+		background: url(blue-nav.gif) no-repeat -183px -49px;
+	}
+	.nav .services a:active {
+		background: url(blue-nav.gif) no-repeat -183px -98px;
+	}
+	.current-services .services a:link, .current-services .services a:visited {
+		background: url(blue-nav.gif) no-repeat -183px -147px;
+		cursor: default;
+	}
+	.nav-services, .nav-services-click {
+		position: absolute;
+		top: 0;
+		left: 183px;
+		width: 97px;
+		height: 48px;
+		background: url(blue-nav.gif) no-repeat -183px -49px;
+	}
+	.nav-services-click {
+		background: url(blue-nav.gif) no-repeat -183px -98px;
+	}
+
+
+	
+	.nav .contact a:link, .nav .contact a:visited {
+		left: 281px;
+		width: 97px;
+	}
+	.nav .contact a:hover, .nav .contact a:focus {
+		background: url(blue-nav.gif) no-repeat -281px -49px;
+	}
+	.nav .contact a:active {
+		background: url(blue-nav.gif) no-repeat -281px -98px;
+	}
+	.current-contact .contact a:link, .current-contact .contact a:visited {
+		background: url(blue-nav.gif) no-repeat -281px -147px;
+		cursor: default;
+	}
+	.nav-contact, .nav-contact-click {
+		position: absolute;
+		top: 0;
+		left: 281px;
+		width: 97px;
+		height: 48px;
+		background: url(blue-nav.gif) no-repeat -281px -49px;
+	}
+	.nav-contact-click {
+		background: url(blue-nav.gif) no-repeat -281px -98px;
+	}
+	

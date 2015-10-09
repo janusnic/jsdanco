@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Fire example</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+var step = 1;
+function nextShadow(){
+    $('#onfire span').each(function(){
+        y = parseFloat($(this).attr("y_pos"));
+        y += step + Math.random()*3;
+        $(this).attr("y_pos", y);
+        shaking = Math.random();
+        shadow1 = "0px 0px "+(y%5)+"px white";
+        shadow2 = shaking*24/y*Math.cos(y/5)*15+"px -"+(shaking*4/y+(y%17))+"px "+(shaking+(y%17))+"px red";
+        shadow3 = shaking*24/y*Math.cos(y/7)*15+"px -"+(shaking*4/y+(y%31))+"px "+(shaking+(y%31))+"px #993";
+        shadow4 = shaking*24/y*Math.cos(y/13)*15+"px -"+(shaking*4/y+(y%41))+"px "+(shaking+(y%41))+"px yellow";
+        $(this).css("text-shadow", shadow2+", "+shadow1+", "+shadow4+", "+shadow3);
+    });
+}
+$(function(){
+    $('#onfire span').each(function(){$(this).attr("y_pos","0");});
+   setInterval(nextShadow, 50); 
+});
+</script>
+    <style type="text/css">
+html,body,div{background:#000; text-align:center; font-family:Arial; line-height:4em}
+#onfire{
+    height:auto;
+    padding-top:3em;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    color:brown;
+}
+a{color:white}
+    </style>
+</head>
+<body>
+<div id="onfire"><span>F</span><span>i</span><span>r</span><span>e</span><span> </span><span>e</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span><span> </span><span>b</span><span>y</span><span> </span><span>C</span><span>S</span><span>S</span><span>3</span><span> </span><span>&</span><span> </span><span>j</span><span>Q</span><span>u</span><span>e</span><span>r</span><span>y</span></div> 
+
+</body>
+</html>

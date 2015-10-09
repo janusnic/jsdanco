@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Слайд-меню. Пример 2</title>
+
+
+
+<style type="text/css">
+body {
+    margin: 0 auto;
+    padding: 0;
+    /*width: 520px;*/
+    font: 75%/120% Arial, Helvetica, sans-serif;
+}
+
+.body {
+    padding:0;
+    border: 1px #ccc solid;
+}
+
+a:focus {
+    outline: none;
+}
+.left{
+    float:left;  
+    width:164px;
+}
+.right{
+    float:right; 
+    width:164px;
+}
+.panel1{
+    width:0px;
+    background: #ccc;
+    height: 265px;
+    overflow:hidden;
+}
+.left .slide {
+    border-left:solid 4px #aaa; 
+    margin: 0;
+    padding: 0;
+    background: url(images/btn-slide-left.gif) no-repeat left center;
+    height: 265px;
+    width:38px;
+    float:left;
+}
+.left .panel1{
+    float:left;
+}
+.right .slide {
+    border-right:solid 4px #aaa; 
+    margin: 0;
+    padding: 0;
+    background: url(images/btn-slide-right.gif) no-repeat left center;
+    height: 265px;
+    width:38px;
+    float:right;
+}
+.right .panel1{
+    float:right;
+}
+.left .btn-slide {
+    background: url(images/white-arrow-hor.gif) no-repeat -45px 80px;
+    text-indent: -9000%;
+    display: block;
+    height: 265px;
+    width:38px;
+}
+.right .btn-slide {
+    background: url(images/white-arrow-hor.gif) no-repeat 15px 80px;
+    text-indent: -9000%;
+    display: block;
+    height: 265px;
+    width:38px;
+}
+
+.left .active {
+    background-position: 10px 80px;
+}
+.right .active {
+    background-position: -45px 80px;
+}
+
+.panel1 ul {
+    list-style:none;
+    border-bottom:1px solid #333;
+    padding:10px;
+    margin:0;
+}
+
+.panel1 ul a{
+    font-weight:bold;
+    color: #333;
+    white-space: nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<div class="body">
+
+<div class="left">
+
+    <div class="panel1">
+        <ul>
+           <li><a href="#" title="Элемент 1">Элемент 1</a></li>
+           <li><a href="#" title="Элемент 2">Элемент 2</a></li>
+           <li><a href="#" title="Элемент 3">Элемент 3</a></li>
+        </ul>
+        <ul>
+           <li><a href="#" title="Элемент 1">Элемент 1</a></li>
+           <li><a href="#" title="Элемент 2">Элемент 2</a></li>
+           <li><a href="#" title="Элемент 3">Элемент 3</a></li>
+        </ul>
+        <ul>
+           <li><a href="#" title="Элемент 1">Элемент 1</a></li>
+           <li><a href="#" title="Элемент 2">Элемент 2</a></li>
+           <li><a href="#" title="Элемент 3">Элемент 3</a></li>
+        </ul>
+    </div> 
+    <p class="slide"><a href="#" class="btn-slide">Меню</a></p>
+    
+</div>
+
+
+</div>
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".btn-slide").on('click', function(){
+        if($(".panel1").css('width') === '120px'){
+            $(".panel1").animate({width: '0px'}, 'slow');
+        }
+        else {
+            $(".panel1").animate({width: '120px'}, 'slow');
+        }
+    });  
+});
+
+</script>
+</body>
+</html>

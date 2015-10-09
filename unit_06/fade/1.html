@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>fadeIn demo</title>
+  <style>
+  div {
+    margin: 3px;
+    width: 300px;
+    display: none;
+    height: 300px;
+    float: left;
+  }
+  #one {
+    background: #f00 url(../img/1.jpg);
+  }
+
+  </style>
+  <script src="../js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+
+<div id="one"></div>
+ 
+<script>
+
+$(document).ready(function(){
+
+  $( "div" ).fadeIn( "slow" );
+  $( "div" ).fadeOut( "slow" );
+
+});
+</script>
+ 
+</body>
+</html>
