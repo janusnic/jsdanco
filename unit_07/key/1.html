@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+
+  <input id='foo'>
+  
+  <span></span>
+  <script>
+
+// установим обработчик события keypress, элементу с идентификатором foo
+$('#foo').keypress(function(eventObject){
+  alert('Вы ввели символ с клавиатуры. Его код равен ' + eventObject.which);
+});
+ 
+// вызовем событие keypress на элементе foo
+$('#foo').keypress();
+ 
+// установим еще один обработчик события keypress, на этот раз элементам 
+// с классом block. В обработчик передадим дополнительные данные
+$('.block').keypress({a:12, b:"abc"}, function(eventObject){
+  var externalData = "a=" + eventObject.data.a + ", b=" + eventObject.data.b;
+  alert('Вы ввели символ с клавиатуры. '+
+        'В обработчик этого события переданы данные: ' + externalData);
+});
+</script>
+ 
+ 
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>trigger demo</title>
+  <style>
+  button {
+    margin: 10px;
+  }
+  div {
+    color: blue;
+    font-weight: bold;
+  }
+  span {
+    color: red;
+  }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+
+<form>
+  <input name='name'>
+  <input type=submit value="going">
+</form>
+<script>
+
+//$( "form:first" ).trigger( "submit" );
+
+//Отправить первую форму, без запуска функции submit():
+
+
+var event = jQuery.Event( "submit" );
+
+$( "form:first" ).trigger( event );
+
+if ( event.isDefaultPrevented() ) {
+
+ // действие...
+
+ console.log('hello');
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Real-Time Search in JavaScript</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+        
+    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400" />
+    <style>
+
+body{font:10pt Arial,sans-serif; color:#555}
+ul{float:left; margin:3px; margin-left:15px; 
+   padding:10px 10px 5px 10px; border:2px solid #ddd}
+ul.matched{background:url('/tags/images/matched.png') 0% 2% no-repeat;}
+ul.result{position:relative; left:-3px; border:3px solid #ff8888;}
+li{position:relative; float:left; margin:7px; 
+   padding:2px; width:60px; height:60px; 
+   background-color:#e1e1e1; border:2px solid #e1e1e1}
+li.matched{background:#e1e1e1 url('/tags/images/matched.png') 5% 5% no-repeat}
+li.result{width:60px; height:60px; border:3px solid #ff8888;}
+p{position:relative; float:left; width:16px; height:16px;
+  margin:2px; background-color:#f4f4f4; font-size:1pt}
+p.matched{background:#f4f4f4 url('/tags/images/matched_mini.png') center no-repeat}
+p.result{width:12px; height:12px; border:2px solid #ff8888;}
+.matched_addit{background:#f4f4f4 url('/tags/images/matched_mini.png') center no-repeat}
+.srce{padding:16px 0; text-align:center;} .srce tt{color:#0088ff}
+.tgName{position:absolute; top:11px; left:45%; font-size:8pt; color:#b2ada1}
+li .tgName{top:24px; left:18px;} li p .tgName{top:0; left:1px; font-size:7pt;}
+.clear{clear:both}
+
+</style>
+</head>
+
+<body>
+
+
+<tt class="tgName">‹ul›</tt>
+<ul>
+  <li><tt class="tgName">‹li›</tt></li>
+  <li></li>
+  <li>
+    <p><tt class="tgName">‹p›</tt></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+  </li>
+  <li></li>
+  <li></li>
+  <div class="clear" />
+</ul>
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+  </li>
+  <li>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+  </li>
+  <div class="clear" />
+</ul>
+<ul>
+  <li>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+    <p></p> <p></p> <p></p>
+  </li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <div class="clear" />
+</ul>
+
+<div class="clear srce">
+  ключевой код: <tt>$("ul").find("li:first, p:last")</tt>
+</div>
+<div class="clear"><p class="matched_addit"></p> – выбранные элементы.</div>
+<div class="clear"><p class="result"></p> – результат работы find().</div>
+
+
+<script src="../js/jquery.min.js"></script>
+<script>
+
+// найдем и сохраним все ul-элементы
+var $matched = $('ul');
+
+// выделим их
+$matched
+  .addClass('matched');
+
+// найдем внутри уже выбранных элементов все требуемые
+// и выделим их добавив класс result
+$matched.find("li:first, p:last")
+  .addClass("result");
+
+</script>
+
+</body>
+</html>

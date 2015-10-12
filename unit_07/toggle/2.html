@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+ p { margin: 4px; font-size:16px; font-weight:bolder;
+     cursor:pointer; }
+ .blue { color:blue; }
+ .highlight { background:red; }
+ </style>
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+ <p class="blue">Click to toggle (<span>clicks: 0</span>)</p>
+ <p class="blue highlight">highlight (<span>clicks: 0</span>)</p>
+ <p class="blue">on these (<span>clicks: 0</span>)</p>
+ <p class="blue">paragraphs (<span>clicks: 0</span>)</p>
+<script>
+var count = 0;
+$("p").each(function() {
+ var $thisParagraph = $(this);
+ var count = 0;
+ $thisParagraph.click(function() {
+   count++;
+   $thisParagraph.find("span").text('clicks: ' + count);
+   $thisParagraph.toggleClass("highlight", count % 3 == 0);
+ });
+});
+</script>
+</body>
+</html>

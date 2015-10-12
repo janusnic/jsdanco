@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    p {background:yellow; font-weight:bold; cursor:pointer; padding:5px;}
+    p.over {background: #ccc;}
+    .onev  {background: #00f;}
+    span {color:red;}
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+  (нажмите на один из элементов из списка)
+  <ul>
+    <li>Быстрее</li>
+    <li>Выше</li>
+    <li>Сильнее</li>
+  </ul>
+  <script>
+    $('ul').on('click', "li", function(){
+      var txt = $(this).text(); // вытащим текст из нажатого элемента
+      alert('Вы нажали на элемент с текстом - «' + txt + '»'); // выведем сообщение с текстом
+    });
+  </script>
+
+  (нажмите на один из элементов из списка)
+  <ul id='foo'>
+    <li class='l1'>Быстрее Быстрее</li>
+    <li class='l2'>Выше Выше</li>
+    <li class='l3'>Сильнее Сильнее</li>
+  </ul>
+  <script>
+    $('#foo').on('click', function(){
+      var txt = $(this).text(); // вытащим текст из нажатого элемента
+      alert('Вы нажали на элемент с текстом - «' + txt + '»'); // выведем сообщение с текстом
+    });
+  </script>
+<button id='but'>Greet</button>
+
+<p>"Кликать" сюда.</p>
+  <span></span>
+
+  <div id='demo'>Demo element</div>
+  <button id='dem'>Demo button</button>
+
+<h3>mousemove-elm</h3>
+<h4 class='mousemove-elm'>Большинство событий, как например нажатие мышью по элементу (click) происходят относительно редко и проблем с их обработкой практически не возникает. Однако такие события как mousemove и scroll могут происходить несколько раз в секунду. В этом случае, частое выполнение обработчиков может потребовать значительных вычислительных ресурсов компьютера и приводить к зависанию. Избежать этого можно, если грамотно организовать выполнение обработчиков. Например, стоит кэшировать вычисляемые величины, вместо того, чтобы считать их каждый раз заново. И в первую очередь следует кэшировать объекты jQuery, поскольку их создание зачастую требует весомых вычислительных затрат. Например, рассмотрим случай, когда нужно в элементе с идентификатором elm прописывать координаты мыши, когда она движется над элементом с классом mousemove-elm:</h4>
+<div id='elm'></diV>
+
+
+<script type="text/javascript">
+function greet(event){
+  alert("Hello "+event.data.name);
+}
+// установим на кнопки один обработчики с 2-мя разными данными
+$("#but").on("click", { name: "Karl" }, greet);
+$("#but").on("click", { name: "Addy" }, greet);
+
+    // при нажатии по элементу <p> выведем текст, содержащий координаты клика
+    $("p").on("click", function(event){
+      var str = "( " + event.pageX + ", " + event.pageY + " )";
+      $("span").text("Клик, это звучит гордо! Особенно в координатах " + str);
+    });
+    // при двойном нажатии по элементу <p> выведем название тега нажатого элемента
+    $("p").on("dblclick", function(){
+      $("span").text("Клик - хорошо, а двойной лучше! Нажат элемент " + this.nodeName);
+    });
+
+    // при наведении и отведении курсора от элемента <p> будем "переключать" наличие класса over
+    $("p").on("mouseenter mouseleave", function(){
+      $(this).toggleClass("over");
+    });
+    $("#dem").on("click", function(){
+      $('#demo').toggleClass("onev");
+    });
+    // эффективное выполнение задачи - элемент с id=elm
+
+    // ищется только один раз
+    var elm = $("#elm");
+    $('.mousemove-elm').on('mousemove', function(event){
+      elm.text(event.pageX + ", " + event.pageY);
+    });
+</script>
+
+</body>
+</html>

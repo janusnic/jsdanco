@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    p{background:yellow; font-weight:bold; cursor:pointer; padding:5px;}
+    p.over{background: #ccc;}
+    span{color:red;}
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+  <p>"Кликать" сюда.</p>
+  <span></span>
+  <script>
+    // при нажатии по элементу <p> выведем текст, содержащий координаты клика
+    $("p").on("click", function(event){
+      var str = "( " + event.pageX + ", " + event.pageY + " )";
+      $("span").text("Клик, это звучит гордо! Особенно в координатах " + str);
+    });
+
+    // при двойном нажатии по элементу <p> выведем название тега нажатого элемента
+    $("p").on("dblclick", function(){
+      $("span").text("Клик - хорошо, а двойной лучше! Нажат элемент " + this.nodeName);
+    });
+
+    // при наведении и отведении курсора от элемента <p> будем "переключать" наличие класса over
+    $("p").on("mouseenter mouseleave", function(){
+      $(this).toggleClass("over");
+    });
+
+</script>
+</body>
+</html>
