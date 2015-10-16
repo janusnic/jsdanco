@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ajax запрос JSON-данных</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+            <style type="text/css">
+
+        #textbox {
+            width:300px;
+            height:250px;
+        }
+
+    </style>
+<script src="js/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){  // по завершению загрузки страницы
+    $('#example').click(function(){ // вешаем на клик по элементу с id = example-5
+        $.getScript('example.js', function(){// загрузку JavaScript'а из файла example.js 
+            testAjax();  // выполняем загруженный JavaScript
+        });                
+    })
+});
+
+
+
+
+</script>
+
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="index.html">Home</a></li>
+                <li><a class="article" href="json.html">JSON</a></li>
+                <li><a href=get.html class="article">Get прогноза погоды</a></li>
+                
+                <li><a href=deferred.html class="article">интерфейс deferred</a></li>
+                 <li><a href=flickr.html class="article">Flickr</a></li>
+                 <li><a href=getjs.html class="article">GetJs</a></li>
+            </ul>
+        </div>
+        <div id="content">
+           
+             <h2>Ajax запрос jQuery.getScript</h2>
+             <p>данная функция загружает и выполняет локальный JavaScript. Может принимать следующие параметры:
+             <ul>
+             <li>url запрашиваемого скрипта</li>
+             <li>callback функция, которой будет скормлен результат (необязательный параметр)</li>
+             </ul>
+      </p>
+        <div id='example'>
+        изменяем элемент с id = example
+        </div>
+
+        </div>
+
+
+       
+    </body>
+</html>

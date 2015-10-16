@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="hode.html">Comments</a></li>
+                <li><a href=get.html class="article">Get прогноза погоды</a></li>
+                <li><a class="article" href="json.html">JSON</a></li>
+                <li><a href=deferred.html class="article">интерфейс deferred</a></li>
+                <li><a href=flickr.html class="article">Flickr</a></li>
+                <li><a href=getjs.html class="article">GetJs</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <h2><a href="ui_libraries_comparison.html">В jQuery существует официальное деление всех ajax методов на две группы:</a></h2>
+            <ul>
+            <li> низкоуровневый ajax интерфейс</li>
+            <li> высокоуровневый ajax интерфейс (упрощенные ajax методы)</li>
+            </ul>
+            <dl>
+            <dt>К первой группе относятся два jQuery ajax метода:
+            <dd>- jQuery.ajax(options)</dd>
+            <dd>- jQuery.ajaxSetup(options)</dd>
+            </dt>
+
+            <dt>Ко второй группе относятся, соответственно остальные jQuery методы:
+            <dd>- load(url, data, callback)</dd>
+            <dd>- jQuery.get(url, data, callback, type)</dd>
+            <dd>- jQuery.getJSON(url, data, callback)</dd>
+            <dd>- jQuery.getScript(url, callback)</dd>
+            <dd>- jQuery.post(url, data, callback, type)</dd>
+            </dt>
+            </dl>
+
+ <p><a class="article" href="ui_libraries_comparison.html">Read more</a></p>
+            
+            <h2><a href=""Низкоуровневый ajax интерфейс</a></h2>
+            <p>Низкоуровневый ajax интерфейс предоставляет больше возможностей для работы с объектом XMLHttpRequest(в IE ActiveXObject), например в методе jQuery.ajax(options) вы можете установить обработку глобальных jQuery ajax событий (ajaxStart,ajaxStop,ajaxSucess,ajaxComplate,ajaxError), например, если Вам необходимо перед отправкой данных на сервер отобразить прогрессбар, а после того как данные успешно будут возвращены его скрыть, то метод jQuery.ajax(options) как раз то, что Вам нужно. Либо иногда возникает необходимость в том, чтобы отправить данные на сервер не как строку, а как необработанный объект, по умолчанию упрощенные методы трансформируют все данные отсылаемые на сервер в строковой тип, чтобы исправить это Вы должны применить метод jQuery.ajax(options), изменив опцию processData на false. . <a class="article" href="hode.html">Read more</a></p>
+
+            <h2>Как отправить запрос на сервер и получить данные?</h2>
+            <p>Если Вам необходим отрезок HTMl кода, который встраивается в структуру страницы, то вполне подойдет метод $.load():
+            <pre>
+                "jQuery"
+                 $("#loadhtml").click(function(){
+                 $("#feeds").load("test.txt", function(data){
+                 $(this).text(data);
+                        }).show("slow");
+                    });  
+
+            </pre>
+            <script src="js/jquery.min.js"></script>
+            <script type=text/javascript>
+                $(document).ready(function(){ 
+                    $("#loadtxt").click(function(){
+                        $("#feeds").load("test.txt", function(data){
+                            $(this).text(data);
+                        }).show("slow");
+                    });  
+                    $("#loadhtml").click(function(){
+                        $("#feeds").load("html.txt", function(data){
+                            $(this).html(data);
+                        }).show("slow");
+                    });  
+                });
+            </script>
+            <button id="loadtxt"> Получить txt данные с сервера</button>
+            <button id="loadhtml"> Получить html данные с сервера</button>
+            <div id="feeds" style="margin:20px;display:none;height:50px;"></div>
+            </p>
+
+
+        </div>
+    </body>
+</html>

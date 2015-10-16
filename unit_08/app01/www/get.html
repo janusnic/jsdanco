@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Прогноз погоды</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+            <style type="text/css">
+
+        #textbox {
+            width:300px;
+            height:250px;
+        }
+
+    </style>
+<script src="js/jquery.min.js"></script>
+<script>
+
+    $( function() {
+ 
+    $('#getForecast').click( function() {
+      var data; 
+      $.get( "getForecast.txt", data, success, "json" );
+    } );
+ 
+    function success( forecastData ) {
+      var forecast = forecastData.city + " прогноз на " + forecastData.date;
+      forecast += ": " + forecastData.forecast + ". Максимальная температура: " + forecastData.maxTemp + "C";
+
+      $("#feeds").html(forecast).show("slow");
+      
+    }
+ 
+  } );
+
+</script>
+
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="index.html">Home</a></li>
+                
+                <li><a href=get.html class="article">Get прогноза погоды</a></li>
+                <li><a class="article" href="json.html">JSON</a></li>
+                <li><a href=deferred.html class="article">интерфейс deferred</a></li>
+                 <li><a href=flickr.html class="article">Flickr</a></li>
+                 <li><a href=getjs.html class="article">GetJs</a></li>
+            </ul>
+        </div>
+        <div id="content">
+           
+             <h2>Прогноз погоды: How to GET in node.js</h2>
+
+        <button id="getForecast">Получить прогноз погоды</button> 
+
+        </div>
+        <div id="feeds" style="margin:20px;display:none;height:50px;"></div>
+    </body>
+</html>

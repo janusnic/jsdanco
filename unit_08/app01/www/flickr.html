@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Прогноз погоды</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+            <style type="text/css">
+
+  img{ height: 100px; float: left; }
+
+    </style>
+<script src="js/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <div id="header">
+            <span>My Simple Blog</span>
+            <ul id="menu">
+                <li><a class="article" href="index.html">Home</a></li>
+                
+                <li><a href=get.html class="article">Get прогноза погоды</a></li>
+                <li><a class="article" href="json.html">JSON</a></li>
+                <li><a href=deferred.html class="article">интерфейс deferred</a></li>
+                <li><a href=flickr.html class="article">Flickr</a></li>
+                
+            </ul>
+        </div>
+        <div id="content">
+           
+             <h2>загрузить 4 последних изображений с помощью Flickr JSONP API</h2>
+
+ <div id="images">
+</div>
+
+        </div>
+<script>
+
+(function() {
+ var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+ $.getJSON( flickerAPI, {
+   tags: "mount rainier",
+   tagmode: "any",
+   format: "json"
+ })
+ .done(function( data ) {
+   $.each( data.items, function( i, item ) {
+     $( "<img/>" ).attr( "src", item.media.m ).appendTo( "#images" );
+     if ( i === 3 ) {
+       return false;
+     }
+   });
+ });
+})();
+
+</script>
+ 
+    </body>
+</html>
+
+
+
+
+
