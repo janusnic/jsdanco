@@ -1,0 +1,44 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Look I'm AJAXing!</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- load bootstrap via CDN -->
+
+    <script src="js/jquery.min.js"></script> <!-- load jquery via CDN -->
+    
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1>Processing an AJAX data</h1>
+
+<script type="text/javascript">
+    
+ // На сервер будет отправлен запрос страницы http://hostname/ajaxtest.php и указаны два параметра. 
+// После получения ответа от сервера будет вызвана функция onAjaxSuccess, которая выведет 
+// на экран сообщение с данными, присланными сервером.
+$.post(
+  "/ajaxtest.php",
+  {
+    param1: "param1",
+    param2: 2
+  },
+  onAjaxSuccess
+);
+ 
+function onAjaxSuccess(data)
+{
+  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+  alert(data);
+}
+
+</script>
+
+
+</div>
+</body>
+</html>
+
+
+

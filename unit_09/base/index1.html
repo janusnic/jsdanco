@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Look I'm AJAXing!</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- load bootstrap via CDN -->
+
+    <script src="js/jquery.min.js"></script> <!-- load jquery via CDN -->
+    
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1>Processing an AJAX json</h1>
+
+<script type="text/javascript">
+    
+
+$.post("/test.php",
+
+   function(data) {
+
+     $('body').append( "Name: " + data.name ) // John
+
+              .append( "Time: " + data.time ); //  2pm
+
+   }, "json");
+
+</script>
+
+
+</div>
+</body>
+</html>
+
+
+

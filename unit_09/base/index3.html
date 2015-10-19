@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Look I'm AJAXing!</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- load bootstrap via CDN -->
+
+    <script src="js/jquery.min.js"></script> <!-- load jquery via CDN -->
+    
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1>Processing an AJAX form</h1>
+
+<form action="/" id="searchForm">
+   <input type="text" name="s" placeholder="Search..." />
+   <input type="submit" value="Search" />
+</form>
+  <!-- результат будет отображён в этом div -->
+  <div id="result"></div>
+
+<script type="text/javascript">
+    
+/* прикрепить событие submit к форме */
+$("#searchForm").submit(function(event) {
+ 
+  /* отключение стандартной отправки формы */
+  event.preventDefault();
+ 
+  /* собираем данные с элементов страницы: */
+  var $form = $( this ),
+      term = $form.find( 'input[name="s"]' ).val(),
+      url = $form.attr( 'action' );
+ 
+  /* отправляем данные методом POST */
+  var posting = $.post( url, { s: term } );
+ 
+  /* результат помещаем в div */
+  posting.done(function( data ) {
+    var content = $( data ).find( '#content' );
+    $( "#result" ).empty().append( content );
+  });
+});
+
+</script>
+
+
+</div>
+</body>
+</html>
+
+
+

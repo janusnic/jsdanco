@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Look I'm AJAXing!</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- load bootstrap via CDN -->
+
+    <script src="js/jquery.min.js"></script> <!-- load jquery via CDN -->
+    
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h1>загрузка XML из файла example.xml</h1>
+
+  <!-- результат будет отображён в этом div -->
+  <div id="example">Click</div>
+
+<script type="text/javascript">
+ 
+ $(document).ready(function(){     // по завершению загрузки страницы
+    $('#example').click(function(){  // вешаем на клик по элементу с id = example
+        $.post('/example.xml', {}, function(xml){  // загрузку XML из файла example.xml   
+            $('#example').html('');
+            $(xml).find('note').each(function(){  // заполняем DOM элемент данными из XML
+                $('#example').append('To: '   + $(this).find('to').text() + '<br/>')
+                               .append('From: ' + $(this).find('from').text() + '<br/>')
+                               .append('<b>'    + $(this).find('heading').text() + '</b><br/>')
+                               .append(           $(this).find('body').text() + '<br/>');
+            });
+        }, 'xml');   // указываем явно тип данных
+    })
+});
+
+</script>
+
+
+</div>
+</body>
+</html>
+
+
+
