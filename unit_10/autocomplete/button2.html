@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<a href="#" id="myButton">A link button</a>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.button.js"></script>
+        <script>
+			(function($){
+				var buttonOpts = {
+					label: "A configured label"	
+				};
+				
+				$("#myButton").button(buttonOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

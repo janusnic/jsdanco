@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Accordion</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<div id="myAccordion">
+			<h2><a href="#">Header 1</a></h2>
+			<div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean sollicitudin. Sed interdum pulvinar justo. Nam iaculis volutpat ligula. Integer vitae felis quis diam laoreet ullamcorper.</div>
+			<h2><a href="#">Header 2</a></h2>
+			<div>Etiam tincidunt est vitae est. Ut posuere, mauris at sodales rutrum, turpis tellus fermentum metus, ut bibendum velit enim eu lectus. Suspendisse poten-ti.</div>
+			<h2><a href="#">Header 3</a></h2>
+			<div>Donec at dolor ac metus pharetra aliquam. Suspen-disse purus. Fusce tempor ultrices libero. Sed quis nunc. Pellentesque tincidunt viverra felis. Integer elit mauris, egestas ultricies, gravida vitae, feugiat a, tel-lus.</div>
+		</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.accordion.js"></script>
+        <script>
+			(function($){
+				var accOpts = {
+					active: false,
+					collapsible: true
+				};
+
+				$("#myAccordion").accordion(accOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

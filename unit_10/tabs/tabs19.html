@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Tabs</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<div id="myTabs"> 
+			<ul>
+				<li><a href="#a">Tab 1</a></li>
+				<li><a href="#b">Tab 2</a></li>
+                <li><a href="remoteTab.txt">AJAX Tab</a></li>
+			</ul>
+			<div id="a">This is the content panel linked to the first tab, it is shown by default.</div>
+			<div id="b">This content is linked to the second tab and will be shown when its tab is clicked.</div>
+		</div>
+        <select id="fileChooser">
+			<option>remoteTab.txt</option> 
+			<option>remoteTab2.txt</option>
+		</select>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.tabs.js"></script>
+        <script>
+			(function($){
+				$("#myTabs").tabs();
+				
+				$("#fileChooser").change(function() {
+
+					$("#myTabs").tabs("url", 2, $(this).val()).tabs("load", 2);
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

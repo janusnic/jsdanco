@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Autocomplete</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="css/autocompleteTheme.css">
+	</head>
+	<body>
+    	<div id="formWrap">
+			<form id="messageForm" action="#">
+				<fieldset>
+					<legend>New message form</legend>
+					<span>New Message</span>
+                    <div class="inner-form ui-helper-clearfix">
+						<label>To:</label>
+						<div id="toList" class="ui-helper-clearfix">
+							<input id="to">
+                            <input id="emails" type="hidden">
+						</div>
+						<label>Message:</label>
+						<textarea id="message" name="message" rows="2" cols="50"></textarea>
+                    </div>
+                    <div class="buttons ui-helper-clearfix">
+                    	<button type="submit">Send</button>
+						<a href="#" title="Cancel">Cancel</a>
+                    </div>
+				</fieldset>
+			</form>
+		</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.position.js"></script>
+        <script src="development-bundle/ui/jquery.ui.autocomplete.js"></script>
+        <script>
+			(function($){
+				
+				var autoOpts = {
+						source: function(req, resp){
+						
+							//request data
+							$.getJSON("http://danwellman.co.uk/contacts.php?callback=?", req, function(data) {
+								
+								//create array for response objects
+								var suggestions = [];
+								
+								//process response
+								$.each(data, function(i, val){
+									var obj = {};
+									obj.value = val.name;
+									obj.email = val.email;								
+									suggestions.push(obj);
+								});
+								
+								//pass array to callback
+								resp(suggestions);
+							});
+						},
+						select: function(e, ui) {
+																				
+							//create formatted email
+							var emailList = $("#emails"),
+								emails = emailList.val().split(","),
+								span = $("<span></span>", {
+									text: ui.item.value,
+									data: {"email": ui.item.email}
+								}),
+								a = $("<a></a>", {
+									"class": "remove",
+									href: "#",
+									title: "Remove",
+									text: "x"
+								}).appendTo(span);
+							
+							//add contact to friend div
+							span.insertBefore("#to");
+							
+							//update emails list								
+							emails.push(ui.item.email);
+							emailList.val(emails.join(","));
+							
+							//tidy input
+							$("#to").remove();
+							$("<input/>", {
+								id: "to"	
+							}).insertBefore("#emails").autocomplete(autoOpts);
+							
+						}
+					};
+				
+				//attach autocomplete
+				$("#to").autocomplete(autoOpts);
+				
+				//add click handler to friends div
+				$("#toList").click(function(){
+					$("#to").focus();
+				});
+				
+				//add delegate handler for clicks on remove links
+				$("#toList").delegate("a", "click", function(){
+					
+					//get email address of contact
+					var email = $(this).parent().data("email"),
+						emails = $("#emails").val().split(",");
+						
+					//remove contact
+					$(this).parent().remove();
+					
+					//remove email
+					$.each(emails, function(i, val) {
+						if (val === email) {
+							emails.splice(i, 1);
+						}
+					});
+					
+					$("#emails").val(emails);
+				});				
+			})(jQuery);
+		</script>
+	</body>
+</html>

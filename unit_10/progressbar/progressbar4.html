@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Progressbar</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<div id="myProgressbar"></div>
+        <button id="increase">Increase by 10%</button>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.progressbar.js"></script>
+        <script>
+			(function($){
+				var progress = $("#myProgressbar");
+				
+				progress.progressbar();
+				
+				$("#increase").click(function() {
+
+					var currentVal = progress.progressbar("option", "value"),
+						newVal = currentVal + 10;
+          
+					progress.progressbar("value", newVal);
+					
+					if (!$("#value").length) {
+						$("<span />", {
+							text: newVal + "%",
+							id: "value",
+							css: {
+								float: "right",
+								marginTop: -28,
+								marginRight: 10
+							}
+						}).appendTo(progress);
+					} else {
+						$("#value").text(val + "%");	
+					}
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

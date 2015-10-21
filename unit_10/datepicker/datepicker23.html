@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Datepicker</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="css/datepickerTheme.css">
+	</head>
+	<body>
+		<div id="bookingForm" class="ui-widget ui-corner-all">
+			<div class="ui-widget-header ui-corner-top">
+				<h2>Booking Form</h2>
+			</div>
+			<div class="ui-widget-content ui-corner-bottom">
+				<label>Appointment date:</label><input id="date">
+			</div>
+		</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.datepicker.js"></script>
+        <script>
+			(function($){
+				var months = [],
+					days = [];
+
+				$.getJSON("http://www.danwellman.co.uk/bookedDates.php?jsoncallback=?", function(data) {
+
+					for (var x = 0; x < data.dates.length; x++) {
+						months.push(data.dates[x].month);
+						days.push(data.dates[x].day);
+					}
+				});
+				
+				function addDates(date) {
+
+					if (date.getDay() == 0 || date.getDay() == 6) {
+						return [false, ""];
+					}
+	
+					for (var x = 0; x < days.length; x++) {
+						if (date.getMonth() == months[x] - 1 && date.getDate() == days[x]) {
+							return [false, "preBooked_class"];
+						}
+					}
+		
+					return [true, ""]; 
+				}
+		
+				var pickerOpts = {
+					beforeShowDay: addDates,
+					minDate: "+1"
+				};
+
+				$("#date").datepicker(pickerOpts);
+
+			})(jQuery);
+		</script>
+	</body>
+</html>

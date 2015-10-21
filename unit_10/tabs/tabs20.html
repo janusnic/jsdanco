@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Tabs</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<div id="myTabs">
+			<ul>
+    			<li><a href="#a"><span>Nebula Information</span></a></li>
+				<li><a href="#flickr"><span>Images</span></a></li>
+			</ul>
+			<div id="a">
+				<p>A nebulae is an interstellar cloud of dust, hydrogen gas, and plasma. It is the first stage of a star's cycle. In these regions the formations of gas, dust, and other materials clump together to form larger masses, which attract further matter, and eventually will become big enough to form stars. The remaining materials are then believed to form planets and other planetary system objects. Many nebulae form from the gravitational collapse of diffused gas in the interstellar medium or ISM. As the material collapses under its own weight, massive stars may form in the center, and their ultraviolet radiation ionizes the surrounding gas, making it visible at optical wavelengths.</p>
+			</div>
+			<div id="flickr"></div>
+		</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.tabs.js"></script>
+        <script>
+			(function($){
+				var img = $("<img/>", {
+					height: 100,
+					width: 100
+				}),
+				tabOpts = {
+					select: function(event, ui) { 
+						if (ui.tab.toString().indexOf("flickr") != -1 ) {
+									
+							$("#flickr").empty();
+
+							$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=nebula&format=json&jsoncallback=?", function(data) {
+					            $.each(data.items, function(i,item){
+									img.clone().attr("src", item.media.m).appendTo("#flickr");
+									
+									if (i == 5) {
+										return false;
+									}
+								});
+							});
+						}
+					}
+				};
+
+				$("#myTabs").tabs(tabOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

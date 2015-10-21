@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Datepicker</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<label>Enter a date: </label><input id="date">
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.datepicker.js"></script>
+        <script>
+			(function($){
+				var pickerOpts = {
+					dateFormat: "d MM yy"
+				};
+				
+				$("#date").datepicker(pickerOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

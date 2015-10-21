@@ -1,0 +1,6 @@
+#myAccordion { width:250px; float:left; } 
+#contentCol { float:left; }
+#contentCol h1 { text-indent:20px; font-family:Georgia; }
+#myAccordion .ui-accordion-header { display:block; padding-left:40px; }
+.ui-accordion-content a { display:block; font-size:70%; text-decoration:none; }
+.ui-accordion-content a:hover { text-decoration:underline; }

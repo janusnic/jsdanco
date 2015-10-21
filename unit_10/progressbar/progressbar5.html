@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Progressbar</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="css/progressTheme.css">
+	</head>
+	<body>
+		<div class="form-container ui-helper-clearfix ui-corner-all">
+			<h1>Registration Form</h1>
+			<p>Progress:</p>
+			<div id="myProgressbar"></div>
+            <label id="amount">0%</label>
+			<form action="serverScript.php">
+                <div class="form-panel">
+                    <h2>Personal Details</h2>
+                    <fieldset class="ui-corner-all">
+                        <label>Name:</label><input type="text">
+                        <label>D.O.B:</label><input type="text">
+                        <label>Choose password:</label><input type="password">
+                        <label>Confirm password:</label><input type="password">
+                    </fieldset>
+                </div>
+                <div class="form-panel ui-helper-hidden">
+                    <h2>Contact Details</h2>
+                    <fieldset class="ui-corner-all">
+                        <label>Email:</label><input type="text">
+                        <label>Telephone:</label><input type="text">
+                        <label>Address:</label><textarea rows="3" cols="25"></textarea>
+                    </fieldset>
+                </div>
+                <div class="form-panel ui-helper-hidden">
+                    <h2>Registration Complete</h2>
+                    <fieldset class="ui-corner-all">
+                        <p>Thanks for registering!</p>
+                    </fieldset>
+                </div>
+            </form>
+            <button id="next">Next</button><button id="back" disabled="disabled">Back</button>
+		</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.progressbar.js"></script>
+        <script>
+			(function($){
+				var prog = $("#myProgressbar"),
+					progressOpts = {
+						change: function() {
+							prog.next().text(prog.progressbar("value") + "%");
+						}
+					};
+
+				prog.progressbar(progressOpts);
+
+				$("#next, #back").click(function() {
+					
+					$("button").attr("disabled", true);
+					
+					if (this.id === "next") {
+						prog.progressbar("option", "value", prog.progressbar("option", "value") + 50);
+						
+						$("form").find("div:visible").fadeOut().next().fadeIn(function(){
+							$("#back").attr("disabled", false);
+							
+							if (!$("form").find("div:last").is(":visible")) {
+								$("#next").attr("disabled", false);
+							}
+						});
+					} else {
+						prog.progressbar("option", "value", prog.progressbar("option", "value") - 50);
+						
+						$("form").find("div:visible").not(".buttons").fadeOut().prev().fadeIn(function() {
+							$("#next").attr("disabled", false);
+											
+							if (!$("form").find("div:first").is(":visible")) {
+								$("#back").attr("disabled", false);	
+							}
+						});
+					}
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

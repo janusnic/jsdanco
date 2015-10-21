@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Slider</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+		<div id="mySlider"></div>
+        <button class="preset" id="low">Preset 1 (low)</button>
+		<button class="preset" id="high">Preset 2 (high)</button>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.mouse.js"></script>
+        <script src="development-bundle/ui/jquery.ui.slider.js"></script>
+        <script>
+			(function($){
+				var sliderOpts = {
+					values: [25, 75]
+				};
+
+				$("#mySlider").slider(sliderOpts);
+				
+				$(".preset").click(function() {
+
+					if (this.id === "low") { 
+						$("#mySlider").slider("values", 0, 0);
+						$("#mySlider").slider("values", 1, 25);
+					} else {
+						$("#mySlider").slider("values", 0, 75);
+						$("#mySlider").slider("values", 1, 100);
+					}
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+		<title>Slider</title>
+	</head>
+	<body>
+		<audio id="audio" src="http://upload.wikimedia.org/wikipedia/en/7/77/Jamiroquai_-_Snooze_You_Lose.ogg">
+			Your browser does not support the audio element.
+		</audio>  
+		<div id="volume"></div>
+		<script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.mouse.js"></script>
+        <script src="development-bundle/ui/jquery.ui.slider.js"></script>
+		<script>
+			(function($){
+		
+				var audio = $("audio")[0],
+					sliderOpts = {
+						value: 5,
+						min: 0,
+						max: 10,
+						orientation: "vertical",
+						change: function() {
+			  
+							var vol = $(this).slider("value") / 10;
+							audio.volume = vol;
+						}
+					};
+
+				audio.volume = 0.5;
+				audio.play();
+				
+				$("#volume").slider(sliderOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

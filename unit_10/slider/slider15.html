@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="css/sliderTheme3.css">
+		<title>Slider</title>
+	</head>
+	<body>
+		<div id="container" class="ui-widget ui-corner-all ui-widget-content ui-helper-clearfix">
+			<label>R:</label><div id="rSlider"></div><br>
+			<label>G:</label><div id="gSlider"></div><br>
+			<label>B:</label><div id="bSlider"></div>
+			<div id="colorBox" class="ui-corner-all ui-widget-content"></div>
+			<input id="output" type="text" value="rgb(255,255,255)">
+			<label for="output" id="outputLabel">Color value:</label>
+		</div>
+		<script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.mouse.js"></script>
+        <script src="development-bundle/ui/jquery.ui.slider.js"></script>
+		<script>
+			(function($){
+		
+				var sliderOpts = {
+						min:0,
+						max: 255,
+						value: 255,
+						slide: function() {
+					
+							var r = $("#rSlider").slider("value"),
+								g = $("#gSlider").slider("value"),
+								b = $("#bSlider").slider("value");
+
+							var rgbString = ["rgb(", r, ",", g, ",", b, ")"].join("");
+								
+							$("#colorBox").css({ backgroundColor: rgbString });
+					
+							$("#output").val(rgbString);
+						}
+					};
+
+				$("#rSlider, #gSlider, #bSlider").slider(sliderOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

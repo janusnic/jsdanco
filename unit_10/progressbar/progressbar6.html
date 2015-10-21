@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Progressbar</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+        <link rel="stylesheet" href="css/progressTheme2.css">
+	</head>
+	<body>
+		<h2>AJAX File Upload</h2>
+        <input type="file" id="file" />
+        <div id="myProgressbar"></div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.progressbar.js"></script>
+        <script>
+			(function($){
+				var prog = $("#myProgressbar"),
+					inputFile = $("#file"),
+					progressOpts = {
+						complete: function() {
+							$("#filename").text("Complete!");
+						}
+					}
+
+				inputFile.change(function() {
+					prog.progressbar(progressOpts);
+
+					var files = inputFile.attr("files"),
+						file = files[0],
+						xhr = new XMLHttpRequest();
+					
+				    xhr.upload.onprogress = function updateProgress(e) {
+      					var loaded = (e.loaded / e.total);
+						prog.progressbar("value", Math.round(loaded * 100));
+				    }
+					
+					xhr.upload.onload = function() {
+						prog.progressbar("value", 100);
+					}
+
+					$("<apan />", {
+						id: "filename",
+						text: file.fileName
+					}).insertAfter(prog);
+
+				    xhr.open("POST", "progressUpload.php");
+					xhr.sendAsBinary(file.getAsBinary());
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>

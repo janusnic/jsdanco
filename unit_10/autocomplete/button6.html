@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+    	<button id="myButton">A button</button>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.button.js"></script>
+        <script>
+			(function($){
+				var buttonOpts = {
+					create: function() {
+						$(this).css("display", "none")	
+					}
+				};
+				
+				$("#myButton").button(buttonOpts)
+			})(jQuery);
+		</script>
+	</body>
+</html>

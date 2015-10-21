@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+    	<div id="buttons">
+        	<h2>Programming Languages</h2>
+	  	    <p>Select your most proficient languages:</p>
+	    	<label for="js">JavaScript</label><input id="js" type="radio" name="lang">
+    	    <label for="py">Python</label><input id="py" type="radio" name="lang">
+        	<label for="cSharp">C#</label><input id="cSharp" type="radio" name="lang">
+	        <label for="jv">Java</label><input id="jv" type="radio" name="lang">
+        </div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.button.js"></script>
+        <script>
+			(function($){				
+				$("#buttons").buttonset();	
+			})(jQuery);
+		</script>
+	</body>
+</html>

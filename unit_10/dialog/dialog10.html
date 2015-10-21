@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Dialog</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+    	<div id="status" class="ui-widget ui-dialog ui-corner-all ui-widget-content">
+            <div class="ui-widget-header ui-dialog-titlebar ui-corner-all">Dialog Status</div>
+            <div class="ui-widget-content ui-dialog-content"></div>
+		</div>
+		<div id="dialog1" title="Dialog 1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean sollicitudin. Sed interdum pulvinar justo. Nam aculis volutpat ligula. Integer vitae felis quis diam laoreet ullamcorper. Etiam tincidunt est vitae est.</div>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.position.js"></script>
+        <script src="development-bundle/ui/jquery.ui.dialog.js"></script>
+        <script src="development-bundle/ui/jquery.ui.mouse.js"></script>
+        <script src="development-bundle/ui/jquery.ui.draggable.js"></script>
+		<script src="development-bundle/ui/jquery.ui.resizable.js"></script>
+        <script>
+			(function($){
+				var dialogOpts = {
+					open: function() {
+						$("#status").children(":last").text("The dialog is open");
+					},
+					close: function() {
+						$("#status").children(":last").text("The dialog is closed");
+					},
+					beforeclose: function() {            
+						if ($("#dialog1").width() > 300) {
+							return false;
+						}
+					}
+				};
+
+				$("#dialog1").dialog(dialogOpts);
+			})(jQuery);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+    	<div id="buttons">
+        	<h2>Programming Languages</h2>
+            <p>Select all languages you know:</p>
+	    	<label for="js1">JavaScript</label><input id="js1" type="checkbox">
+    	    <label for="py1">Python</label><input id="py1" type="checkbox">
+        	<label for="cSharp1">C#</label><input id="cSharp1" type="checkbox">
+	        <label for="jv1">Java</label><input id="jv1" type="checkbox">
+        </div>
+        <br>
+        <button id="select">Select All</button>
+        <button id="deselect">Deselect All</button>        
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.button.js"></script>
+        <script>
+			(function($){				
+				$("#buttons").buttonset();
+				
+				$("#select").button().click(function() {
+					$("#buttons").find("input").attr("checked", true).button("refresh");
+				});
+				
+				$("#deselect").button().click(function() {
+					$("#buttons").find("input").attr("checked", false).button("refresh");
+				});				
+			})(jQuery);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.9.custom.css">
+	</head>
+	<body>
+    	<form>
+        	<label for="name">Name: <input id="name" name="name"></label>
+            <label for="email">Email: <input id="email" name="email"></label>
+	    	<button id="myButton">Register</button>
+        </form>
+        <script src="development-bundle/jquery-1.4.4.js"></script>
+        <script src="development-bundle/ui/jquery.ui.core.js"></script>
+        <script src="development-bundle/ui/jquery.ui.widget.js"></script>
+        <script src="development-bundle/ui/jquery.ui.button.js"></script>
+        <script>
+			(function($){				
+				$("#myButton").button().click(function(e) {
+					e.preventDefault();
+					
+					var form = $("form"),
+						formData = {
+							name: form.find("#name").val(),
+							email: form.find("#email").val()
+						};
+							
+					$.post("register.php", formData, function() {
+						$("#myButton").button("option", "disabled", true);
+						
+						form.find("label").remove();
+						$("<label></label>", {
+							text: "Thanks for registering!"
+						}).prependTo(form);
+					});
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>
