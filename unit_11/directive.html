@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<body>
+
+<div data-ng-app="" data-ng-init="firstName='John'; quantity=1;price=5;names=['Jani','Hege','Kai'];mnames=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="firstName"></p>
+<p>You wrote: {{ firstName }}</p>
+
+<h2>Cost Calculator</h2>
+
+Quantity: <input type="number" ng-model="quantity">
+Price: <input type="number" ng-model="price">
+
+<p><b>Total in dollar:</b> {{quantity * price}}</p>
+
+
+<p>Looping with ng-repeat:</p>
+  <ul>
+    <li data-ng-repeat="x in names">
+      {{ x }}
+    </li>
+  </ul>
+
+<p>Looping with objects:</p>
+<ul>
+  <li ng-repeat="x in mnames">
+  {{ x.name + ', ' + x.country }}</li>
+</ul>
+
+</div>
+
+</body>
+</html>
+

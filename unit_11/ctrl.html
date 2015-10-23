@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp">
+
+<div ng-controller="myCtrl">
+
+<p>Try to change the names. controller 1</p>
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+
+<p>Try to change the names. controller 2</p>
+<div ng-controller="personCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{fullName()}}
+
+</div>
+
+<p>Try to change the names. controller 3</p>
+<div ng-controller="personsCtrl">
+
+First Name: <input type="text" ng-model="person.firstName"><br>
+Last Name: <input type="text" ng-model="person.lastName"><br>
+<br>
+Full Name: {{fullName()}}
+
+</div>
+
+
+</div>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName= "Doe";
+});
+
+app.controller('personCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+    $scope.fullName = function() {
+        return $scope.firstName + " " + $scope.lastName;
+    }
+});
+
+app.controller("personsCtrl",function($scope) {
+    $scope.person = {
+        firstName: "John",
+        lastName: "Doe",
+    };
+    $scope.fullName = function() {
+        var x = $scope.person;  
+        return x.firstName + " " + x.lastName;
+    }
+});
+
+</script>
+
+
+
+</body>
+
+</html>
